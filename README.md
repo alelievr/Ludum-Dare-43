@@ -1,15 +1,16 @@
-# JamStartupKit
+# JamStartupKit 2D
 A Unity kit of assets and scripts for game jams
 
 ### Installation
-clone this repo using `git clone --recursive https://github.com/alelievr/2D-JamStartupKit` to get the submodules.
+Clone this repo using `git clone https://github.com/alelievr/2D-JamStartupKit` to get the submodules.
+
+Then you can rename the project inside `Project Settings > Player Settings > Product name`
 
 ### Assets included
-+ [Post processing stack](https://www.assetstore.unity3d.com/en/#!/content/83912)
++ [Post processing stack V2](https://github.com/Unity-Technologies/PostProcessing)
 + [2D extras (for tilemap)](https://github.com/Unity-Technologies/2d-extras)
 + [DOTween](https://assetstore.unity.com/packages/tools/animation/dotween-hotween-v2-27676)
 + [Cinemachine](https://www.assetstore.unity3d.com/en/#!/content/79898)
-+ [Anima2D](https://assetstore.unity.com/packages/essentials/unity-anima2d-79840)
 + [JamKit](https://github.com/alelievr/JamKit)
 
 ### Modified project settings
