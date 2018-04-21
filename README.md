@@ -2,9 +2,12 @@
 A Unity kit of assets and scripts for game jams
 
 ### Installation
-Clone this repo using `git clone https://github.com/alelievr/2D-JamStartupKit` to get the submodules.
 
-Then you can rename the project inside `Project Settings > Player Settings > Product name`
+1. Clone this repo using `git clone https://github.com/alelievr/2D-JamStartupKit`
+2. Remove the origin of the repository `git remote remove origin`
+3. Add your repository as destination `git remote add origin https://my/git/url`
+4. Run Unity and rename the project inside `Project Settings > Player Settings > Product name`
+5. Push the initial state of your project `git push --set-upstream origin master`
 
 ### Assets included
 + [Post processing stack V2](https://github.com/Unity-Technologies/PostProcessing)
