@@ -11,6 +11,8 @@ A Unity kit of assets and scripts for game jams
 
 ### Assets included
 + [Post processing stack V2](https://github.com/Unity-Technologies/PostProcessing)
++ [2D Animations](https://docs.unity3d.com/Packages/com.unity.2d.animation@1.0/manual/index.html)
++ [SpriteShape](https://docs.unity3d.com/Packages/com.unity.2d.spriteshape@1.0/manual/index.html)
 + [2D extras (for tilemap)](https://github.com/Unity-Technologies/2d-extras)
 + [DOTween](https://assetstore.unity.com/packages/tools/animation/dotween-hotween-v2-27676)
 + [Cinemachine](https://www.assetstore.unity3d.com/en/#!/content/79898)
