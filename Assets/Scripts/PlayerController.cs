@@ -24,8 +24,8 @@ public class PlayerController : MonoBehaviour
 
     [Header("Mobility and groundaison")]
     public float maxSpeed = 1f;
-    public float minSlideVelocity = 3f;
-    public float slimeVelocityIgnore = .5f;
+    float minSlideVelocity = 3f;
+    float slimeVelocityIgnore = .5f;
     public float jumpPower = 10f;
     public float jumpIdle = .3f;
     public Vector3 groundPosition;
@@ -104,17 +104,17 @@ public class PlayerController : MonoBehaviour
             vcam = Camera.main.GetComponent<CinemachineBrain>().ActiveVirtualCamera as CinemachineVirtualCamera;
             yield return new WaitForEndOfFrame();
         }
-        // if (isPlayer)
-        // {
-        //     vcam.Follow = (transform.parent) ?? transform;
-        //     vcam.LookAt = (transform.parent) ?? transform;
-        // }
+        if (isPlayer)
+        {
+            vcam.Follow = (transform.parent) ?? transform;
+            vcam.LookAt = (transform.parent) ?? transform;
+        }
     }
 
     protected void reinit()
     {
         isdashing = false;
-        anim.SetBool("grounded", grounded);
+        anim.SetBool("Grounded", grounded);
 		candash = true;
         rigidbody2D.gravityScale = baseGravityScale;
         gameObject.layer = baseLayer;
@@ -179,7 +179,7 @@ public class PlayerController : MonoBehaviour
     }
     IEnumerator Tapping()
     {
-        if (istapping == false)
+        if (istapping == false && isdashing == false)
         {
             float y = transform.localScale.y;
             if (flying && movey < 0)
@@ -187,14 +187,10 @@ public class PlayerController : MonoBehaviour
             if (TappingClip)
                 audiosource.PlayOneShot(TappingClip, tappingVolume);
             istapping = true;
-            anim.SetBool("istapping", true);
-            // move = transform.position.x - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane)).x; // tape ducoter de la sourie (en gros la ca sert a rien)
-            // if (!istapping && move > 0 && !facingLeft)
-            //     Flip();
-            // else if (!istapping && move < 0 && facingLeft)
-            //     Flip();
+            anim.SetBool("Attack", true);
+
             yield return new WaitForSeconds(0.3f);
-            anim.SetBool("istapping", false);
+            anim.SetBool("Attack", false);
             yield return new WaitForSeconds(0.05f);
             StopTapping();
             if (flying)
@@ -205,7 +201,7 @@ public class PlayerController : MonoBehaviour
     void    StopTapping()
     {
         StopCoroutine(Tapping());
-        anim.SetBool("istapping", false);
+        anim.SetBool("Attack", false);
         istapping = false;
     }
 
@@ -248,8 +244,8 @@ public class PlayerController : MonoBehaviour
         oldV = rigidbody2D.velocity;
 
         anim.SetBool("ismoving", move != 0 || (IsOnLadder && movey != 0));
-        anim.SetFloat("velx", rigidbody2D.velocity.x);
-        anim.SetFloat("vely", rigidbody2D.velocity.y);
+        anim.SetFloat("VelocityX", rigidbody2D.velocity.x);
+        anim.SetFloat("VelocityY", rigidbody2D.velocity.y);
 
         if (rbparent)
             rigidbody2D.velocity += new Vector2(rbparent.velocity.x, (IsOnLadder) ? rbparent.velocity.y : 0);
@@ -282,7 +278,7 @@ public class PlayerController : MonoBehaviour
             IsOnLadder = collisionNumber != 0;
         rigidbody2D.gravityScale = (IsOnLadder) ? 0 : baseGravityScale;
 
-        anim.SetBool("grounded", grounded);
+        anim.SetBool("Grounded", grounded);
     }
 
     void SlideCheck()
@@ -389,7 +385,7 @@ public class PlayerController : MonoBehaviour
     IEnumerator stunouch(Vector2 impact)
     {
 		coroutineisplayingcount++;
-        anim.SetBool("ouch", true);
+        anim.SetTrigger("Damage");
         IsOuchstun = true;
         if (stunStopMove)
             cannotmove = true;
@@ -399,7 +395,6 @@ public class PlayerController : MonoBehaviour
         spriteMaterial.SetFloat("_isflashing", 0);
         cannotmove = false;
         IsOuchstun = false;
-        anim.SetBool("ouch", false);
         coroutineisplayingcount--;
     }
 
@@ -426,7 +421,9 @@ public class PlayerController : MonoBehaviour
     {
         if (grounded && canJump)
         {
-            audiosource.PlayOneShot(jumpClip, jumpingVolume);
+            if (audiosource && jumpClip)
+                audiosource.PlayOneShot(jumpClip, jumpingVolume);
+            anim.SetTrigger("Jump");
             rigidbody2D.AddForce(new Vector2(0, jumppower), ForceMode2D.Impulse);
             StartCoroutine(JumpDelay());
             rigidbody2D.velocity = new Vector2(move * maxSpeed, Mathf.Clamp(rigidbody2D.velocity.y, minYVelocity, maxYVelocity));
@@ -464,10 +461,10 @@ public class PlayerController : MonoBehaviour
 		coroutineisplayingcount++;
 		if (move == 0 && (!flying || movey == 0))
 			Debug.Log(gameObject.name + " trying to dodge without moving");
-		else if (candash == true)
+		else if (candash == true && IsOuchstun == false)
 		{
 			candash = false;
-			anim.SetBool("isdashing", true);
+			anim.SetBool("Dash", true);
             if (isinvuindash == false)
                 gameObject.layer = 12;
             else
@@ -490,7 +487,7 @@ public class PlayerController : MonoBehaviour
                 gameObject.layer = baseLayer;
             else
                 gameObject.layer = baseLayer;
-            anim.SetBool("isdashing", false);
+            anim.SetBool("Dash", false);
 			yield return new WaitForSeconds(dashcd);
 			candash = true;
 		}
@@ -502,26 +499,34 @@ public class PlayerController : MonoBehaviour
                                                         UPDATE
     *****************************************************************************************************************/
 
+    public enum Key{Left, Right, Up, Down, Jump, Dash, Attack};
+    public bool[] key = new bool[10];
+
+    public void DestroyKey(Key k)
+    {
+        key[(int)k] = false;
+    }
+    public void AddKey(Key k)
+    {
+        key[(int)k] = true;
+    }
+
+
     void Update()
     {
         if (life < 0)
             return;
         if (cannotmove == true)
             return;
-        move = Input.GetAxisRaw("Horizontal");
+        move =  Mathf.Clamp(Input.GetAxisRaw("Horizontal"), (key[(int)Key.Left]) ? -Mathf.Infinity : 0,(key[(int)Key.Right]) ?  Mathf.Infinity : 0);
         movey = Input.GetAxisRaw("Vertical");
-        bool iscrouching = false;
+       bool iscrouching = false;
        // move = (istapping) ? move / 2 : move;
 
 
-        if ((Input.GetKey(KeyCode.Space))
-            && movey < -0.6f)
-        {
-            Debug.Log(movey);
+        if (key[(int)Key.Jump] && (Input.GetKey(KeyCode.Space)) && movey < -0.6f)
             tryGoUnder();
-        }
-
-        else if (Input.GetKey(KeyCode.Space))
+        else if (key[(int)Key.Jump] && Input.GetKey(KeyCode.Space))
             tryjump();
         else if(movey < -0.6f && grounded)
         {
@@ -530,22 +535,10 @@ public class PlayerController : MonoBehaviour
         }
         anim.SetBool("iscrouching", iscrouching);
 
-        if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl)
-            #if UNITY_STANDALONE_OSX
-            || Input.GetKey(KeyCode.Joystick1Button2)
-            #else
-            || Input.GetKey(KeyCode.Joystick1Button2)
-            #endif
-            )
+        if (key[(int)Key.Attack] && Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))
             StartCoroutine(Tapping());
 
-		if (Input.GetKey(KeyCode.X) || Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.LeftCommand) || Input.GetKey(KeyCode.RightShift)
-            #if UNITY_STANDALONE_OSX
-            || Input.GetKey(KeyCode.Joystick1Button6) || Input.GetKey(KeyCode.Joystick1Button7)
-            #else
-            || Input.GetKey(KeyCode.Joystick1Button6) || Input.GetKey(KeyCode.Joystick1Button7)
-            #endif
-            )
+		if (key[(int)Key.Dash] && Input.GetKey(KeyCode.X) || Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.LeftCommand) || Input.GetKey(KeyCode.RightShift))
             StartCoroutine(dash());
     }
 
