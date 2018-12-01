@@ -10,7 +10,7 @@ using UnityEngine.Events;
 
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class PlayerController : Stopmoving
+public class PlayerController : MonoBehaviour
 {
 
     [Header("Basic setting")]
@@ -90,6 +90,7 @@ public class PlayerController : Stopmoving
     [HideInInspector] public Rigidbody2D rbparent = null;
 
     protected LayerMask groundLayer;
+    [HideInInspector]public bool cannotmove = false;
 
 
     /*****************************************************************************************************************
@@ -103,20 +104,16 @@ public class PlayerController : Stopmoving
             vcam = Camera.main.GetComponent<CinemachineBrain>().ActiveVirtualCamera as CinemachineVirtualCamera;
             yield return new WaitForEndOfFrame();
         }
-        if (isPlayer)
-        {
-            vcam.Follow = (transform.parent) ?? transform;
-            vcam.LookAt = (transform.parent) ?? transform;
-        }
+        // if (isPlayer)
+        // {
+        //     vcam.Follow = (transform.parent) ?? transform;
+        //     vcam.LookAt = (transform.parent) ?? transform;
+        // }
     }
 
     protected void reinit()
     {
-        if (Vector2.negativeInfinity == lastCheckpoint)
-            lastCheckpoint = transform.position;
         isdashing = false;
-        // Flip();
-        // anim.SetBool("facingLeft", facingLeft);
         anim.SetBool("grounded", grounded);
 		candash = true;
         rigidbody2D.gravityScale = baseGravityScale;
@@ -125,13 +122,11 @@ public class PlayerController : Stopmoving
             lifeText.text = life.ToString();
         IsOuchstun = false;
         isDead = false;
-        if (isPlayer && GameManager.instance && GameManager.instance.save.lastCheckpoint != Vector2.zero)
-            transform.position = GameManager.instance.save.lastCheckpoint;
 
         StartCoroutine(WaitForCam());
-        CaBouge cbtmp = GetComponentInParent<CaBouge>();
-        if (cbtmp)
-            rbparent = cbtmp.GetComponent<Rigidbody2D>();
+        // CaBouge cbtmp = GetComponentInParent<CaBouge>();
+        // if (cbtmp)
+        //     rbparent = cbtmp.GetComponent<Rigidbody2D>();
     }
 
     protected void init()
@@ -151,8 +146,6 @@ public class PlayerController : Stopmoving
             isPlayer = true;
         col = GetComponents<Collider2D>().Where(c => !c.isTrigger).FirstOrDefault();
         baseGravityScale = rigidbody2D.gravityScale;
-        if (isPlayer && GameManager.instance)
-            GameManager.instance.player = this;
         reinit();
     }
 
@@ -345,11 +338,7 @@ public class PlayerController : Stopmoving
 
     void eventOnDie()
     {
-        if (tag == "BadGuy")
-        {
-            if (Random.value < 1f)
-                audiosource.PlayOneShot(Camera.main.GetComponent<BankSoundStupid>().PlayerMockingHAHAHAHA, 0.7f);
-        }
+
     }
 
     public void ouch(Vector2 impact2)
@@ -517,7 +506,7 @@ public class PlayerController : Stopmoving
     {
         if (life < 0)
             return;
-        if (base.cannotmove == true)
+        if (cannotmove == true)
             return;
         move = Input.GetAxisRaw("Horizontal");
         movey = Input.GetAxisRaw("Vertical");
@@ -525,26 +514,14 @@ public class PlayerController : Stopmoving
        // move = (istapping) ? move / 2 : move;
 
 
-        if ((Input.GetKey(KeyCode.Space)
-            #if UNITY_STANDALONE_OSX
-            || Input.GetKey(KeyCode.Joystick1Button0)
-            #else
-            || Input.GetKey(KeyCode.Joystick1Button0)
-            #endif
-            )
+        if ((Input.GetKey(KeyCode.Space))
             && movey < -0.6f)
         {
             Debug.Log(movey);
             tryGoUnder();
         }
 
-        else if (Input.GetKey(KeyCode.Space)
-            #if UNITY_STANDALONE_OSX
-            || Input.GetKey(KeyCode.Joystick1Button0)
-            #else
-            || Input.GetKey(KeyCode.Joystick1Button0)
-            #endif
-            )
+        else if (Input.GetKey(KeyCode.Space))
             tryjump();
         else if(movey < -0.6f && grounded)
         {
@@ -584,10 +561,8 @@ public class PlayerController : Stopmoving
         if (Physics2D.OverlapCircleNonAlloc(transform.position, 1.4f, ctmp, 1 << gameObject.layer) > 1)
         {
             Collider2D col;
-            // Debug.Log(ctmp);
             if (col = ctmp.FirstOrDefault(c => c && !c.transform.IsChildOf(transform) && c.gameObject != gameObject && !c.isTrigger))
             {
-                // Debug.Log(col);
                 impacto = (transform.position - col.transform.position ) * 2f;
                 if (!flying)
                     impacto.y = 0;
@@ -598,7 +573,7 @@ public class PlayerController : Stopmoving
             return;
         allCheck();
 
-        if (base.cannotmove == true)
+        if (cannotmove == true)
             return;
 
         Move(move, movey);
