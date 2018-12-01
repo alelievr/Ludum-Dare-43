@@ -112,6 +112,9 @@ public class SceneTransition : MonoBehaviour
 
 	IEnumerator LoadSceneCoroutine()
 	{
+		if (loading == true)
+			yield break;
+		
 		loading = true;
 
 		StartFadeIn();
