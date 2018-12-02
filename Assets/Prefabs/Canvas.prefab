@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 1369828173027388172}
   - component: {fileID: 1369828173027388173}
   - component: {fileID: 1369828173027388178}
-  - component: {fileID: 8534792679231774627}
+  - component: {fileID: 7198826096873854695}
+  - component: {fileID: 3454080658623697615}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -100,7 +101,103 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &8534792679231774627
+--- !u!82 &7198826096873854695
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1369828173027388179}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: c51297dfa6fe54f4fa08917071955fb7, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &3454080658623697615
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -109,10 +206,29 @@ MonoBehaviour:
   m_GameObject: {fileID: 1369828173027388179}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f646bcb7a52814291a332676da2b3daa, type: 3}
+  m_Script: {fileID: 11500000, guid: 68d69ada6ece34c3dbd512cc168fc3fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonList:
+  - index: 0
+    guiButton: {fileID: 7792784391905439375}
+    guiLayer: {fileID: 7792784391102197208}
+    actif: 1
+  - index: 3
+    guiButton: {fileID: 7792784391526548431}
+    guiLayer: {fileID: 7792784392218585408}
+    actif: 1
+  - index: 1
+    guiButton: {fileID: 7792784391198326360}
+    guiLayer: {fileID: 7792784392034964692}
+    actif: 1
+  - index: 4
+    guiButton: {fileID: 7792784390879970798}
+    guiLayer: {fileID: 7792784391884875258}
+    actif: 1
+  destroyButtonSound: {fileID: 7198826096873854695}
   dealPanel: {fileID: 2270330950756232170}
+  chargeSacrifice: 0
 --- !u!1 &2270330950670713314
 GameObject:
   m_ObjectHideFlags: 0
@@ -229,8 +345,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4378022405362565370}
-        m_MethodName: TogglePauseMenu
+      - m_Target: {fileID: 3454080658623697615}
+        m_MethodName: SelectDeal
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -253,15 +369,13 @@ GameObject:
   - component: {fileID: 2270330950756232171}
   - component: {fileID: 2270330950756232165}
   - component: {fileID: 2270330950756232164}
-  - component: {fileID: 4378022405362565370}
-  - component: {fileID: 8268027220867831475}
   m_Layer: 5
   m_Name: PanelDealPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2270330950756232171
 RectTransform:
   m_ObjectHideFlags: 0
@@ -325,48 +439,6 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
---- !u!114 &4378022405362565370
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2270330950756232170}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f646bcb7a52814291a332676da2b3daa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dealPanel: {fileID: 2270330950756232170}
---- !u!114 &8268027220867831475
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2270330950756232170}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68d69ada6ece34c3dbd512cc168fc3fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buttonList:
-  - index: 0
-    guiButton: {fileID: 7792784391905439375}
-    guiLayer: {fileID: 7792784391102197208}
-    actif: 1
-  - index: 3
-    guiButton: {fileID: 7792784391526548431}
-    guiLayer: {fileID: 7792784392218585408}
-    actif: 1
-  - index: 1
-    guiButton: {fileID: 7792784391198326360}
-    guiLayer: {fileID: 7792784392034964692}
-    actif: 1
-  - index: 4
-    guiButton: {fileID: 7792784390879970798}
-    guiLayer: {fileID: 7792784391884875258}
-    actif: 1
 --- !u!1 &2270330951273932857
 GameObject:
   m_ObjectHideFlags: 0
@@ -483,19 +555,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4378022405362565370}
-        m_MethodName: TogglePauseMenu
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 0}
-        m_MethodName: addDestroy
+        m_MethodName: Deal1
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -702,8 +763,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4378022405362565370}
-        m_MethodName: TogglePauseMenu
+      - m_Target: {fileID: 3454080658623697615}
+        m_MethodName: SelectDeal
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1022,7 +1083,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8268027220867831475}
+      - m_Target: {fileID: 3454080658623697615}
         m_MethodName: DestroyButton
         m_Mode: 5
         m_Arguments:
@@ -1384,7 +1445,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8268027220867831475}
+      - m_Target: {fileID: 3454080658623697615}
         m_MethodName: DestroyButton
         m_Mode: 5
         m_Arguments:
@@ -1514,7 +1575,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8268027220867831475}
+      - m_Target: {fileID: 3454080658623697615}
         m_MethodName: DestroyButton
         m_Mode: 5
         m_Arguments:
@@ -1797,7 +1858,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8268027220867831475}
+      - m_Target: {fileID: 3454080658623697615}
         m_MethodName: DestroyButton
         m_Mode: 5
         m_Arguments:

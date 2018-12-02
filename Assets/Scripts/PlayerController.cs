@@ -629,4 +629,12 @@ public class PlayerController : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(transform.position + groundPosition, groundSize);
     }
+
+    public void Deal1()
+    {
+        if (guiButtons.chargeSacrifice == 0) {
+            guiButtons.TogglePauseMenu();
+            //// fait des truc
+        }
+    }
 }

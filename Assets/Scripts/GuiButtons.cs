@@ -14,16 +14,24 @@ public class GuiButtons : MonoBehaviour
             public bool actif;
     }
     public List<ButtonList> buttonList = new List<ButtonList>();
+    public  AudioSource destroyButtonSound;
+    public GameObject dealPanel;
+    private bool isPaused = false;
+
+
+    public int chargeSacrifice = 0;
+
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown("e")) {
+            TogglePauseMenu();
+        }
     }
 
     public void SetButtonStatus(PlayerController.Key p_button, bool p_status) {
@@ -38,10 +46,30 @@ public class GuiButtons : MonoBehaviour
     }
 
     public void DestroyButton(string p_key) {
-        ButtonList truc;
-        Debug.Log("trugh5bnj");
-        truc = buttonList.Where(c => c.index.ToString() == p_key).FirstOrDefault();
-        truc.actif = false;
-        truc.guiLayer.SetActive(true);
+        if (chargeSacrifice > 0) {
+            chargeSacrifice--;
+            ButtonList truc;
+            truc = buttonList.Where(c => c.index.ToString() == p_key).FirstOrDefault();
+            truc.actif = false;
+            truc.guiLayer.SetActive(true);
+            destroyButtonSound.Play();
+        }
+    }
+
+    public void TogglePauseMenu()
+    {
+        if (dealPanel.activeSelf)
+        {
+            dealPanel.SetActive(false);
+            Time.timeScale = 1.0f;
+            isPaused = false;
+        }
+        else
+        {
+            dealPanel.SetActive(true);
+            chargeSacrifice++;
+            Time.timeScale = 0f;
+            isPaused = true;
+        }
     }
 }
