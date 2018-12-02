@@ -13,7 +13,7 @@ public class GuiButtons : MonoBehaviour
             public GameObject guiLayer;
             public bool actif;
     }
-    public List<ButtonList> buttonList;
+    public List<ButtonList> buttonList = new List<ButtonList>();
     // Start is called before the first frame update
     void Start()
     {
