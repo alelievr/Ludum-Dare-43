@@ -250,11 +250,10 @@ public class PlayerController : MonoBehaviour
 
         // anim.SetBool("ismoving", move != 0 || (IsOnLadder && movey != 0));
         anim.SetFloat("VelocityX",  Mathf.Abs(rigidbody2D.velocity.x));
-        anim.SetFloat("VelocityY", rigidbody2D.velocity.y);
+        anim.SetFloat("VelocityY", rigidbody2D.velocity.y / 12);
 
         if (rbparent)
             rigidbody2D.velocity += new Vector2(rbparent.velocity.x, (IsOnLadder) ? rbparent.velocity.y : 0);
-        rigidbody2D.velocity += impacto;
     }
 
     Collider2D actualGround;
@@ -330,8 +329,8 @@ public class PlayerController : MonoBehaviour
         isDead = true;
         IsOuchstun = true;
         StopTapping();
-        gameObject.layer = LayerMask.NameToLayer("TouchNothing");
-        rigidbody2D.gravityScale = 0;
+        gameObject.layer = LayerMask.NameToLayer("DeathThing");
+        // rigidbody2D.gravityScale = 0;
         cannotmove = true;
         anim.SetTrigger("death");
         StartCoroutine(waitbefordying());
@@ -542,18 +541,6 @@ public class PlayerController : MonoBehaviour
 
     protected void PCFixedUpdate()
     {
-        impacto = Vector2.zero;
-        if (Physics2D.OverlapCircleNonAlloc(transform.position, 1.4f, ctmp, 1 << gameObject.layer) > 1)
-        {
-            Collider2D col;
-            if (col = ctmp.FirstOrDefault(c => c && !c.transform.IsChildOf(transform) && c.gameObject != gameObject && !c.isTrigger))
-            {
-                impacto = (transform.position - col.transform.position ) * 2f;
-                if (!flying)
-                    impacto.y = 0;
-            }
-            
-        }
         if (life <= 0)
             return;
         allCheck();

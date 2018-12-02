@@ -6,6 +6,8 @@ TagManager:
   tags:
   - FadeTranstion
   - Ground
+  - ouch
+  - bam
   layers:
   - Default
   - TransparentFX
@@ -17,8 +19,8 @@ TagManager:
   - 
   - PostProcessing
   - Ground
-  - 
-  - 
+  - Player
+  - DeathThing
   - 
   - 
   - 
