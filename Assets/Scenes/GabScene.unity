@@ -213,7 +213,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 4
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -358,6 +358,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8085375875346480966, guid: a7f84f7f1c0bf421a971f51edc9906fc,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 8085375875346480969, guid: a7f84f7f1c0bf421a971f51edc9906fc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -431,6 +436,21 @@ PrefabInstance:
     - target: {fileID: 8085375875346480967, guid: a7f84f7f1c0bf421a971f51edc9906fc,
         type: 3}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8085375875346480970, guid: a7f84f7f1c0bf421a971f51edc9906fc,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8085375875346480970, guid: a7f84f7f1c0bf421a971f51edc9906fc,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8085375875346480970, guid: a7f84f7f1c0bf421a971f51edc9906fc,
+        type: 3}
+      propertyPath: m_UpdateMode
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

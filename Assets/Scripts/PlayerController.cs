@@ -252,7 +252,7 @@ public class PlayerController : MonoBehaviour
         oldV = rigidbody2D.velocity;
 
         anim.SetBool("ismoving", move != 0 || (IsOnLadder && movey != 0));
-        anim.SetFloat("VelocityX", rigidbody2D.velocity.x);
+        anim.SetFloat("VelocityX",  Mathf.Abs(rigidbody2D.velocity.x));
         anim.SetFloat("VelocityY", rigidbody2D.velocity.y);
 
         if (rbparent)
