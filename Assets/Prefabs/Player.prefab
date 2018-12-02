@@ -435,6 +435,7 @@ MonoBehaviour:
   lastCheckpoint: {x: -Infinity, y: -Infinity}
   rbparent: {fileID: 0}
   cannotmove: 0
+  platTile: {fileID: 11400000, guid: fd587312b563345ada8711b43fc4bb70, type: 2}
   PlatformToCreate: {fileID: 162826908677488759, guid: 352c1bdc407f543ee85e8921cfc9cbfe,
     type: 3}
   multBoost: 1.2

@@ -97,6 +97,10 @@ public class PlayerController : MonoBehaviour
     [HideInInspector]public bool cannotmove = false;
 
 
+    // TileMap:
+    public TileBase     platTile;
+    Tilemap             tilemap;
+
 
     /*****************************************************************************************************************
                                                         INITIALISATION
@@ -152,6 +156,7 @@ public class PlayerController : MonoBehaviour
         col = GetComponents<Collider2D>().Where(c => !c.isTrigger).FirstOrDefault();
         baseGravityScale = rigidbody2D.gravityScale;
         reinit();
+        tilemap = GameObject.FindObjectOfType< Tilemap >();
     }
 
     // protected void OnEnable()
@@ -666,24 +671,23 @@ public class PlayerController : MonoBehaviour
             DestroyTileRepeat(i, new Vector3Int(CellPos.x + 1, CellPos.y + 1, CellPos.z), t);
         }
     }
+
     void DestroyThing()
     {
-        Vector2 mouseToWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Collider2D[] col = Physics2D.OverlapPointAll(mouseToWorld);
+        Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Collider2D[] col = Physics2D.OverlapPointAll(mouseWorld);
         if (col.Count() == 0)
             return ;
         nbDestroyLeft--;
         foreach (var c in col)
         {
-            Tilemap t = c.GetComponent<Tilemap>();
-            if (t)
+            if (tilemap)
             {
-                DestroyTileRepeat(DestroyRange, t.WorldToCell(mouseToWorld), t);
-                // t.GetComponent<CompositeCollider2D>().GenerateGeometry();
+                DestroyTileRepeat(DestroyRange, tilemap.WorldToCell(mouseWorld), tilemap);
+                // tilemap.GetComponent<CompositeCollider2D>().GenerateGeometry();
             }
             else
                 GameObject.Destroy(c.gameObject);
-            
         }
     }
 
@@ -698,8 +702,11 @@ public class PlayerController : MonoBehaviour
 
     void CreatePlatform()
     {
+        Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         nbAddLeft--;
-        GameObject.Instantiate(PlatformToCreate, (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition), PlatformToCreate.transform.rotation);
+        tilemap.SetTile(tilemap.WorldToCell(mouseWorld), platTile);
+        tilemap.SetTile(tilemap.WorldToCell(mouseWorld) + Vector3Int.right, platTile);
+        // GameObject.Instantiate(PlatformToCreate, (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition), PlatformToCreate.transform.rotation);
     }
 
     public void AddPlatform()
