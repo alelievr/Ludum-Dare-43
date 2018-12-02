@@ -148,8 +148,6 @@ public class PlayerController : MonoBehaviour
         audiosource2 = GetComponent<AudioSource>();
         if (tag == "Player")
             isPlayer = true;
-        if (isPlayer)
-            Application.targetFrameRate = 60;
         col = GetComponents<Collider2D>().Where(c => !c.isTrigger).FirstOrDefault();
         baseGravityScale = rigidbody2D.gravityScale;
         reinit();

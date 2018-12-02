@@ -346,6 +346,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8085375875346480966, guid: a7f84f7f1c0bf421a971f51edc9906fc,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 8085375875346480969, guid: a7f84f7f1c0bf421a971f51edc9906fc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -419,6 +424,21 @@ PrefabInstance:
     - target: {fileID: 8085375875346480967, guid: a7f84f7f1c0bf421a971f51edc9906fc,
         type: 3}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8085375875346480970, guid: a7f84f7f1c0bf421a971f51edc9906fc,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8085375875346480970, guid: a7f84f7f1c0bf421a971f51edc9906fc,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8085375875346480970, guid: a7f84f7f1c0bf421a971f51edc9906fc,
+        type: 3}
+      propertyPath: m_UpdateMode
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
