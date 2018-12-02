@@ -176,7 +176,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 0, y: 10}
-  m_SizeDelta: {x: 225, y: 58.25}
+  m_SizeDelta: {x: 250, y: 58.25}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &4905880438974466594
 CanvasRenderer:
@@ -294,10 +294,10 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 1920, y: 1080}
+  m_ReferenceResolution: {x: 800, y: 600}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -449,7 +449,11 @@ MonoBehaviour:
   destroyButtonSound: {fileID: 7198826096873854695}
   dealPanel: {fileID: 2270330950756232170}
   guiButtonsAnimator: {fileID: 5600038131546512379}
-  chargeSacrifice: 0
+  platTile: {fileID: 0}
+  mouseBase: {fileID: 0}
+  mouseDestroy: {fileID: 0}
+  mouseCreate: {fileID: 0}
+  DestroyRange: 1
 --- !u!1 &1539465352019721665
 GameObject:
   m_ObjectHideFlags: 0
@@ -923,11 +927,6 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 5951651876210862807, guid: be6a2ea9eecf64f049fc95d6e519dc78,
         type: 3}
-      propertyPath: m_Colors.m_HighlightedColor.r
-      value: 0.6792453
-      objectReference: {fileID: 0}
-    - target: {fileID: 5951651876210862807, guid: be6a2ea9eecf64f049fc95d6e519dc78,
-        type: 3}
       propertyPath: m_Colors.m_HighlightedColor.g
       value: 0.6792453
       objectReference: {fileID: 0}
@@ -1268,21 +1267,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2472995820644009885, guid: 7dd03d08d3e5e4c7b8cdcd9aa1cb81f0,
         type: 3}
-      propertyPath: m_Colors.m_DisabledColor.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2472995820644009885, guid: 7dd03d08d3e5e4c7b8cdcd9aa1cb81f0,
-        type: 3}
-      propertyPath: m_Colors.m_DisabledColor.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2472995820644009885, guid: 7dd03d08d3e5e4c7b8cdcd9aa1cb81f0,
-        type: 3}
-      propertyPath: m_Colors.m_DisabledColor.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2472995820644009885, guid: 7dd03d08d3e5e4c7b8cdcd9aa1cb81f0,
-        type: 3}
       propertyPath: m_Colors.m_DisabledColor.a
       value: 1
       objectReference: {fileID: 0}
@@ -1291,6 +1275,11 @@ PrefabInstance:
       propertyPath: m_Interactable
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2472995820644009885, guid: 7dd03d08d3e5e4c7b8cdcd9aa1cb81f0,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3454080658623697615}
     - target: {fileID: 2472995820644009885, guid: 7dd03d08d3e5e4c7b8cdcd9aa1cb81f0,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -1491,7 +1480,7 @@ PrefabInstance:
     - target: {fileID: 2472995820644009887, guid: 7dd03d08d3e5e4c7b8cdcd9aa1cb81f0,
         type: 3}
       propertyPath: m_Name
-      value: AddPlat
+      value: AddBlock
       objectReference: {fileID: 0}
     - target: {fileID: 2472995820644009884, guid: 7dd03d08d3e5e4c7b8cdcd9aa1cb81f0,
         type: 3}
@@ -1615,21 +1604,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2472995820644009885, guid: 7dd03d08d3e5e4c7b8cdcd9aa1cb81f0,
         type: 3}
-      propertyPath: m_Colors.m_DisabledColor.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2472995820644009885, guid: 7dd03d08d3e5e4c7b8cdcd9aa1cb81f0,
-        type: 3}
-      propertyPath: m_Colors.m_DisabledColor.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2472995820644009885, guid: 7dd03d08d3e5e4c7b8cdcd9aa1cb81f0,
-        type: 3}
-      propertyPath: m_Colors.m_DisabledColor.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2472995820644009885, guid: 7dd03d08d3e5e4c7b8cdcd9aa1cb81f0,
-        type: 3}
       propertyPath: m_Colors.m_DisabledColor.a
       value: 1
       objectReference: {fileID: 0}
@@ -1638,6 +1612,11 @@ PrefabInstance:
       propertyPath: m_Interactable
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2472995820644009885, guid: 7dd03d08d3e5e4c7b8cdcd9aa1cb81f0,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3454080658623697615}
     - target: {fileID: 2472995820644009885, guid: 7dd03d08d3e5e4c7b8cdcd9aa1cb81f0,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -1661,7 +1640,7 @@ PrefabInstance:
     - target: {fileID: 2472995821395215228, guid: 7dd03d08d3e5e4c7b8cdcd9aa1cb81f0,
         type: 3}
       propertyPath: m_Text
-      value: Add Plat
+      value: Add Block
       objectReference: {fileID: 0}
     - target: {fileID: 7951623811437374152, guid: 7dd03d08d3e5e4c7b8cdcd9aa1cb81f0,
         type: 3}
@@ -1696,7 +1675,7 @@ PrefabInstance:
     - target: {fileID: 2472995820644009887, guid: 7dd03d08d3e5e4c7b8cdcd9aa1cb81f0,
         type: 3}
       propertyPath: m_Name
-      value: DestroyPlat
+      value: DestroyBlock
       objectReference: {fileID: 0}
     - target: {fileID: 2472995820644009884, guid: 7dd03d08d3e5e4c7b8cdcd9aa1cb81f0,
         type: 3}
@@ -1805,21 +1784,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2472995820644009885, guid: 7dd03d08d3e5e4c7b8cdcd9aa1cb81f0,
         type: 3}
-      propertyPath: m_Colors.m_DisabledColor.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2472995820644009885, guid: 7dd03d08d3e5e4c7b8cdcd9aa1cb81f0,
-        type: 3}
-      propertyPath: m_Colors.m_DisabledColor.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2472995820644009885, guid: 7dd03d08d3e5e4c7b8cdcd9aa1cb81f0,
-        type: 3}
-      propertyPath: m_Colors.m_DisabledColor.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2472995820644009885, guid: 7dd03d08d3e5e4c7b8cdcd9aa1cb81f0,
-        type: 3}
       propertyPath: m_Colors.m_DisabledColor.a
       value: 1
       objectReference: {fileID: 0}
@@ -1827,6 +1791,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Interactable
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2472995820644009885, guid: 7dd03d08d3e5e4c7b8cdcd9aa1cb81f0,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3454080658623697615}
+    - target: {fileID: 2472995820644009885, guid: 7dd03d08d3e5e4c7b8cdcd9aa1cb81f0,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: DestroyBlock
       objectReference: {fileID: 0}
     - target: {fileID: 2472995821395215228, guid: 7dd03d08d3e5e4c7b8cdcd9aa1cb81f0,
         type: 3}
@@ -1842,6 +1816,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Color.b
       value: 0.3019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 2472995821395215228, guid: 7dd03d08d3e5e4c7b8cdcd9aa1cb81f0,
+        type: 3}
+      propertyPath: m_Text
+      value: Destroy Block
       objectReference: {fileID: 0}
     - target: {fileID: 7951623811437374152, guid: 7dd03d08d3e5e4c7b8cdcd9aa1cb81f0,
         type: 3}
