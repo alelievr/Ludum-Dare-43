@@ -118,18 +118,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1108279267}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &735840386 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3454080658623697615, guid: b07b2a4e8664f4630a0f81dd2c0a5f94,
-    type: 3}
-  m_PrefabInstance: {fileID: 1369828174168353917}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68d69ada6ece34c3dbd512cc168fc3fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &828470805 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5447780480873371062, guid: 4306f6ffe9b4a417492a6f270ec0d7b0,
@@ -336,10 +324,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 470677035, guid: a7f84f7f1c0bf421a971f51edc9906fc, type: 3}
-      propertyPath: guiButtons
-      value: 
-      objectReference: {fileID: 735840386}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7f84f7f1c0bf421a971f51edc9906fc, type: 3}
 --- !u!1 &1363764951
