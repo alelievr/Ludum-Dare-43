@@ -24,7 +24,8 @@ public class GuiButtons : MonoBehaviour
     }
     
     public List<ButtonList> buttonList = new List<ButtonList>();
-    public AudioSource  destroyButtonSound;
+    public AudioSource  guiEnterSound;
+    public AudioSource  guiExitSound;
     public GameObject   dealPanel;
     public Animator     guiButtonsAnimator;
     Mode               mode;
@@ -101,6 +102,7 @@ public class GuiButtons : MonoBehaviour
 
     void OpenDealMenu()
     {
+        guiEnterSound.Play();
         timeFreeze = true;
         guiButtonsAnimator.SetBool("ShowGUI", true);
         guiButtonsAnimator.SetBool("SwitchEnable", false);
@@ -115,6 +117,7 @@ public class GuiButtons : MonoBehaviour
 
     void CloseDealMenu()
     {
+        guiExitSound.Play();
         timeFreeze = false;
         dealing = false;
         guiButtonsAnimator.SetBool("ShowGUI", false);
@@ -194,8 +197,8 @@ public class GuiButtons : MonoBehaviour
         if (button.actif)
         {
             button.actif = false;
+            button.guiButton.GetComponent< Button >().interactable = false;
             button.guiLayer.SetActive(true);
-            destroyButtonSound.Play();
             guiButtonsAnimator.SetBool("SwitchEnable", true);
         }
     }
