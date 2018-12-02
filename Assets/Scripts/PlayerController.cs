@@ -257,7 +257,7 @@ public class PlayerController : MonoBehaviour
         rigidbody2D.velocity = (flying) ? Vector2.SmoothDamp(oldV, newVCible, ref currentV, 0.2f) : newVCible;
         oldV = rigidbody2D.velocity;
 
-        anim.SetBool("ismoving", move != 0 || (IsOnLadder && movey != 0));
+        // anim.SetBool("ismoving", move != 0 || (IsOnLadder && movey != 0));
         anim.SetFloat("VelocityX",  Mathf.Abs(rigidbody2D.velocity.x));
         anim.SetFloat("VelocityY", rigidbody2D.velocity.y);
 
@@ -534,7 +534,7 @@ public class PlayerController : MonoBehaviour
             return;
         move =  Mathf.Clamp(Input.GetAxisRaw("Horizontal"), (guiButtons.GetButtonStatus(Key.Left)) ? -Mathf.Infinity : 0,(guiButtons.GetButtonStatus(Key.Right)) ?  Mathf.Infinity : 0);
         movey = Input.GetAxisRaw("Vertical");
-       bool iscrouching = false;
+    //    bool iscrouching = false;
        // move = (istapping) ? move / 2 : move;
 
         SetMouse();
@@ -547,9 +547,9 @@ public class PlayerController : MonoBehaviour
         else if(movey < -0.6f && grounded)
         {
             move = 0;
-            iscrouching = true;
+            // iscrouching = true;
         }
-        anim.SetBool("iscrouching", iscrouching);
+        // anim.SetBool("iscrouching", iscrouching);
         if (Input.GetMouseButton(0) && nbAddLeft > 0)
             CreatePlatform();
         else if (Input.GetMouseButton(0) && nbDestroyLeft > 0)
@@ -707,6 +707,33 @@ public class PlayerController : MonoBehaviour
         tilemap.SetTile(tilemap.WorldToCell(mouseWorld), platTile);
         tilemap.SetTile(tilemap.WorldToCell(mouseWorld) + Vector3Int.right, platTile);
         // GameObject.Instantiate(PlatformToCreate, (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition), PlatformToCreate.transform.rotation);
+    }
+
+    Dictionary< Vector3Int, TileBase > previewTiles = new Dictionary<Vector3Int, TileBase>();
+
+    public void InitializeCreatePlatformPreview()
+    {
+        previewTiles.Clear();
+    }
+
+    public void PreviewCreatePlatform()
+    {
+        Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector3Int tilePos1 = tilemap.WorldToCell(mouseWorld);
+        Vector3Int tilePos2 = tilemap.WorldToCell(mouseWorld) + Vector3Int.right;
+
+        // Replace tiles if needed
+        if (!previewTiles.ContainsKey(tilePos1))
+            previewTiles[tilePos1] = tilemap.GetTile(tilePos1);
+        if (!previewTiles.ContainsKey(tilePos2))
+            previewTiles[tilePos2] = tilemap.GetTile(tilePos2);
+
+        // Reset existing tiles:
+        foreach (var tile in previewTiles)
+        {
+            if (!(tile.Key == tilePos1 || tile.Key == tilePos2))
+                tilemap.SetTile(tile.Key, tile.Value);
+        }
     }
 
     public void AddPlatform()

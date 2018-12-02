@@ -16,6 +16,7 @@ public class GuiButtons : MonoBehaviour
     public List<ButtonList> buttonList = new List<ButtonList>();
     public  AudioSource destroyButtonSound;
     public GameObject dealPanel;
+    public Animator     guiButtonsAnimator;
     private bool isPaused = false;
 
 
@@ -45,8 +46,11 @@ public class GuiButtons : MonoBehaviour
         return ((truc = buttonList.Where(c => c.index == p_button).FirstOrDefault()) != null ? truc.actif : false);
     }
 
-    public void DestroyButton(string p_key) {
-        if (chargeSacrifice > 0) {
+    public void DestroyButton(string p_key)
+    {
+        if (chargeSacrifice > 0)
+        {
+            guiButtonsAnimator.SetBool("EnableButtons", true);
             chargeSacrifice--;
             ButtonList truc;
             truc = buttonList.Where(c => c.index.ToString() == p_key).FirstOrDefault();
