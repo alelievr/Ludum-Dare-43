@@ -213,7 +213,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 4
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -708,6 +708,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 5447780480873371062, guid: 4306f6ffe9b4a417492a6f270ec0d7b0,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 8819349727364925839, guid: 4306f6ffe9b4a417492a6f270ec0d7b0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -772,11 +777,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_CellSize.y
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5447780480873371062, guid: 4306f6ffe9b4a417492a6f270ec0d7b0,
-        type: 3}
-      propertyPath: m_Layer
-      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 1845093217208454689, guid: 4306f6ffe9b4a417492a6f270ec0d7b0,
         type: 3}

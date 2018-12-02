@@ -148,6 +148,8 @@ public class PlayerController : MonoBehaviour
         audiosource2 = GetComponent<AudioSource>();
         if (tag == "Player")
             isPlayer = true;
+        if (isPlayer)
+            Application.targetFrameRate = 60;
         col = GetComponents<Collider2D>().Where(c => !c.isTrigger).FirstOrDefault();
         baseGravityScale = rigidbody2D.gravityScale;
         reinit();
@@ -252,7 +254,7 @@ public class PlayerController : MonoBehaviour
         oldV = rigidbody2D.velocity;
 
         anim.SetBool("ismoving", move != 0 || (IsOnLadder && movey != 0));
-        anim.SetFloat("VelocityX", rigidbody2D.velocity.x);
+        anim.SetFloat("VelocityX",  Mathf.Abs(rigidbody2D.velocity.x));
         anim.SetFloat("VelocityY", rigidbody2D.velocity.y);
 
         if (rbparent)
