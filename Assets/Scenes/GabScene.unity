@@ -7644,6 +7644,11 @@ PrefabInstance:
       propertyPath: m_Type
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2270330950756232170, guid: b07b2a4e8664f4630a0f81dd2c0a5f94,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2270330951273932859, guid: b07b2a4e8664f4630a0f81dd2c0a5f94,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -7682,7 +7687,7 @@ PrefabInstance:
     - target: {fileID: 2270330951273932859, guid: b07b2a4e8664f4630a0f81dd2c0a5f94,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: DestroyThing
+      value: addDestroy
       objectReference: {fileID: 0}
     - target: {fileID: 2270330951273932859, guid: b07b2a4e8664f4630a0f81dd2c0a5f94,
         type: 3}
