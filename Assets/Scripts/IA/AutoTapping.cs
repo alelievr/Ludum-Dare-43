@@ -54,7 +54,7 @@ public class AutoTapping : MonoBehaviour {
 	IEnumerator Tapping()
     {
         pc.istapping = true;
-        anim.SetBool("istapping", true);
+        anim.SetBool("Attack", true);
 
         // move = transform.position.x - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane)).x; // tape ducoter de la sourie (en gros la ca sert a rien)
         // if (!istapping && move > 0 && !facingRight)
@@ -80,7 +80,7 @@ public class AutoTapping : MonoBehaviour {
 
     void StopTapping()
     {
-        anim.SetBool("istapping", false);
+        anim.SetBool("Attack", false);
         StopCoroutine(Tapping());
         pc.istapping = false;
     }
