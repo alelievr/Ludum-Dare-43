@@ -94,7 +94,7 @@ public class PlayerController : MonoBehaviour
 
     protected LayerMask groundLayer;
     [HideInInspector]public bool cannotmove = false;
-    float nbDestroyLeft = 1;
+    float nbDestroyLeft = 0;
 
 
     /*****************************************************************************************************************
@@ -577,6 +577,11 @@ public class PlayerController : MonoBehaviour
                                                         COLLISION
     *****************************************************************************************************************/
     protected bool IsOnLadder = false;
+
+    public void addDestroy()
+    {
+        nbDestroyLeft++;
+    }
 
     void DestroyThing()
     {

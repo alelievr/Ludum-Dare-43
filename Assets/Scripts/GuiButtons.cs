@@ -36,4 +36,12 @@ public class GuiButtons : MonoBehaviour
         ButtonList truc;
         return ((truc = buttonList.Where(c => c.index == p_button).FirstOrDefault()) != null ? truc.actif : false);
     }
+
+    public void DestroyButton(string p_key) {
+        ButtonList truc;
+        Debug.Log("trugh5bnj");
+        truc = buttonList.Where(c => c.index.ToString() == p_key).FirstOrDefault();
+        truc.actif = false;
+        truc.guiLayer.SetActive(true);
+    }
 }
