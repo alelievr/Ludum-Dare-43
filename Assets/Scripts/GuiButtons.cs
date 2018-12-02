@@ -33,6 +33,7 @@ public class GuiButtons : MonoBehaviour
     }
 
     public bool GetButtonStatus(PlayerController.Key p_button) {
-        return buttonList.Where(c => c.index == p_button).FirstOrDefault().actif;
+        ButtonList truc;
+        return ((truc = buttonList.Where(c => c.index == p_button).FirstOrDefault()) != null ? truc.actif : false);
     }
 }
