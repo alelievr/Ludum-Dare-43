@@ -6,6 +6,7 @@ using System.Linq;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.Events;
+using UnityEngine.Tilemaps;
 
 
 
@@ -94,7 +95,7 @@ public class PlayerController : MonoBehaviour
 
     protected LayerMask groundLayer;
     [HideInInspector]public bool cannotmove = false;
-    float nbDestroyLeft = 0;
+
 
 
     /*****************************************************************************************************************
@@ -510,6 +511,16 @@ public class PlayerController : MonoBehaviour
     public enum Key{Left, Right, Up, Down, Jump, Dash, Attack};
 
 
+    void SetMouse()
+    {
+        if (nbAddLeft > 0)
+            Cursor.SetCursor(mouseCreate, new Vector2(mouseCreate.width / 2, mouseCreate.height / 2), CursorMode.Auto);
+        else if (nbDestroyLeft > 0)
+            Cursor.SetCursor(mouseDestroy, new Vector2(mouseDestroy.width / 2, mouseDestroy.height / 2), CursorMode.Auto);
+        else
+            Cursor.SetCursor(mouseBase, new Vector2(mouseBase.width / 2, mouseBase.height / 2), CursorMode.Auto);
+    }
+
     void Update()
     {
         if (life < 0)
@@ -520,6 +531,8 @@ public class PlayerController : MonoBehaviour
         movey = Input.GetAxisRaw("Vertical");
        bool iscrouching = false;
        // move = (istapping) ? move / 2 : move;
+
+        SetMouse();
 
 
         if (guiButtons.GetButtonStatus(Key.Jump) && (Input.GetKey(KeyCode.Space)) && movey < -0.6f)
@@ -532,7 +545,9 @@ public class PlayerController : MonoBehaviour
             iscrouching = true;
         }
         anim.SetBool("iscrouching", iscrouching);
-        if (Input.GetMouseButton(0) && nbDestroyLeft > 0)
+        if (Input.GetMouseButton(0) && nbAddLeft > 0)
+            CreatePlatform();
+        else if (Input.GetMouseButton(0) && nbDestroyLeft > 0)
             DestroyThing();
         else if (guiButtons.GetButtonStatus(Key.Attack) && Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl) || Input.GetMouseButton(0))
             StartCoroutine(Tapping());
@@ -578,19 +593,6 @@ public class PlayerController : MonoBehaviour
     *****************************************************************************************************************/
     protected bool IsOnLadder = false;
 
-    public void addDestroy()
-    {
-        nbDestroyLeft++;
-    }
-
-    void DestroyThing()
-    {
-       Collider2D[] col = Physics2D.OverlapPointAll(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-       foreach (var c in col)
-       {
-           c.enabled = false;
-       }
-    }
     void OnCollisionEnter2D(Collision2D other)
     {
         if (other.collider.tag == "Slime")
@@ -630,11 +632,94 @@ public class PlayerController : MonoBehaviour
         Gizmos.DrawWireCube(transform.position + groundPosition, groundSize);
     }
 
-    public void Deal1()
+
+/*****************************************************************************************************************
+                                                        DEAL
+*****************************************************************************************************************/
+    [Header("Deal setting")]
+    public GameObject PlatformToCreate;
+    public float multBoost = 1.2f;
+    public int DestroyRange = 1;
+
+    public Texture2D mouseBase;
+    public Texture2D mouseDestroy;
+    public Texture2D mouseCreate;
+
+
+    float nbAddLeft = 0;
+    float nbDestroyLeft = 0;
+
+    void DestroyTileRepeat(int i, Vector3Int CellPos, Tilemap t)
     {
-        if (guiButtons.chargeSacrifice == 0) {
-            guiButtons.TogglePauseMenu();
-            //// fait des truc
+        t.SetTile(CellPos, null);
+        if (i > 0)
+        {
+            i--;
+            DestroyTileRepeat(i, new Vector3Int(CellPos.x - 1, CellPos.y - 1, CellPos.z), t);
+            DestroyTileRepeat(i, new Vector3Int(CellPos.x - 1, CellPos.y, CellPos.z), t);
+            DestroyTileRepeat(i, new Vector3Int(CellPos.x - 1, CellPos.y + 1, CellPos.z), t);
+            DestroyTileRepeat(i, new Vector3Int(CellPos.x, CellPos.y - 1, CellPos.z), t);
+            DestroyTileRepeat(i, new Vector3Int(CellPos.x, CellPos.y, CellPos.z), t);
+            DestroyTileRepeat(i, new Vector3Int(CellPos.x, CellPos.y + 1, CellPos.z), t);
+            DestroyTileRepeat(i, new Vector3Int(CellPos.x + 1, CellPos.y - 1, CellPos.z), t);
+            DestroyTileRepeat(i, new Vector3Int(CellPos.x + 1, CellPos.y, CellPos.z), t);
+            DestroyTileRepeat(i, new Vector3Int(CellPos.x + 1, CellPos.y + 1, CellPos.z), t);
         }
     }
+    void DestroyThing()
+    {
+        Vector2 mouseToWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Collider2D[] col = Physics2D.OverlapPointAll(mouseToWorld);
+        if (col.Count() == 0)
+            return ;
+        nbDestroyLeft--;
+        foreach (var c in col)
+        {
+            Tilemap t = c.GetComponent<Tilemap>();
+            if (t)
+            {
+                DestroyTileRepeat(DestroyRange, t.WorldToCell(mouseToWorld), t);
+                // t.GetComponent<CompositeCollider2D>().GenerateGeometry();
+            }
+            else
+                GameObject.Destroy(c.gameObject);
+            
+        }
+    }
+
+    public void addDestroy()
+    {
+        if (guiButtons.chargeSacrifice == 0)
+        {
+            guiButtons.TogglePauseMenu();
+            nbDestroyLeft++;
+        }
+    }
+
+    void CreatePlatform()
+    {
+        nbAddLeft--;
+        GameObject.Instantiate(PlatformToCreate, (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition), PlatformToCreate.transform.rotation);
+    }
+
+    public void AddPlatform()
+    {
+        if (guiButtons.chargeSacrifice == 0)
+        {
+            guiButtons.TogglePauseMenu();
+            nbAddLeft++;
+        }
+    }
+
+    public void Boost()
+    {
+        if (guiButtons.chargeSacrifice == 0)
+        {
+            guiButtons.TogglePauseMenu();
+            maxSpeed *= multBoost;
+            maxYVelocity *= multBoost;
+            minYVelocity *= multBoost;
+        }
+    }
+
 }

@@ -197,8 +197,9 @@ GameObject:
   - component: {fileID: 8085375875346480968}
   - component: {fileID: 8085375875346480967}
   - component: {fileID: 8085375875346480970}
-  - component: {fileID: 470677036}
   - component: {fileID: 470677034}
+  - component: {fileID: 470677036}
+  - component: {fileID: 6545457810603135275}
   - component: {fileID: 470677035}
   m_Layer: 0
   m_Name: Player
@@ -317,6 +318,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!70 &470677034
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8085375875346480966}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.22980212, y: 0.14256881}
+  m_Size: {x: 2.2285872, y: 7.4097776}
+  m_Direction: 0
 --- !u!50 &470677036
 Rigidbody2D:
   serializedVersion: 4
@@ -338,7 +355,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!70 &470677034
+--- !u!70 &6545457810603135275
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -418,6 +435,13 @@ MonoBehaviour:
   lastCheckpoint: {x: -Infinity, y: -Infinity}
   rbparent: {fileID: 0}
   cannotmove: 0
+  PlatformToCreate: {fileID: 162826908677488759, guid: 352c1bdc407f543ee85e8921cfc9cbfe,
+    type: 3}
+  multBoost: 1.2
+  DestroyRange: 1
+  mouseBase: {fileID: 2800000, guid: 9f8eeae144e1e464fb2fe20de2d3941f, type: 3}
+  mouseDestroy: {fileID: 2800000, guid: 8e488ad39dab0445e9f9c24b9f0be75b, type: 3}
+  mouseCreate: {fileID: 2800000, guid: 47378b401f2244ca682fc9c4874a7491, type: 3}
 --- !u!1 &8085375875405571523
 GameObject:
   m_ObjectHideFlags: 0
