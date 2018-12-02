@@ -12,6 +12,7 @@ using UnityEngine.Events;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
+    public GuiButtons guiButtons;
 
     [Header("Basic setting")]
     public Text lifeText = null; 
@@ -51,6 +52,8 @@ public class PlayerController : MonoBehaviour
     [Range(0, 1)] public float runVolume = 0.5f;    
     public AudioClip DieClip;
     [Range(0, 1)] public float DieVolume = 0.5f;
+    public AudioClip DestroyClip;
+    [Range(0, 1)] public float DestroyVolume = 0.5f;
 
     [Header("Ouch")]
     public float ouchJumpMultPushX = 2;
@@ -91,6 +94,7 @@ public class PlayerController : MonoBehaviour
 
     protected LayerMask groundLayer;
     [HideInInspector]public bool cannotmove = false;
+    float nbDestroyLeft = 0;
 
 
     /*****************************************************************************************************************
@@ -188,7 +192,11 @@ public class PlayerController : MonoBehaviour
                 audiosource.PlayOneShot(TappingClip, tappingVolume);
             istapping = true;
             anim.SetBool("Attack", true);
-
+            move = transform.position.x - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane)).x; // tape ducoter de la sourie (en gros la ca sert a rien)
+            if (!istapping && move > 0 && !facingLeft)
+                Flip();
+            else if (!istapping && move < 0 && facingLeft)
+                Flip();
             yield return new WaitForSeconds(0.3f);
             anim.SetBool("Attack", false);
             yield return new WaitForSeconds(0.05f);
@@ -235,9 +243,9 @@ public class PlayerController : MonoBehaviour
         newVCible.x = Mathf.Clamp(move * maxSpeed, -maxSpeed, maxSpeed);
         newVCible.y = Mathf.Clamp((IsOnLadder) ? movey * maxSpeed : rigidbody2D.velocity.y, minYVelocity, maxYVelocity);
 
-        if ((!istapping || isPlayer) && move > 0 && facingLeft)
+        if ((!istapping /*|| isPlayer*/) && move > 0 && facingLeft)
             Flip();
-        else if ((!istapping || isPlayer) && move < 0 && !facingLeft)
+        else if ((!istapping /*|| isPlayer*/) && move < 0 && !facingLeft)
             Flip();
         
         rigidbody2D.velocity = (flying) ? Vector2.SmoothDamp(oldV, newVCible, ref currentV, 0.2f) : newVCible;
@@ -500,16 +508,6 @@ public class PlayerController : MonoBehaviour
     *****************************************************************************************************************/
 
     public enum Key{Left, Right, Up, Down, Jump, Dash, Attack};
-    public bool[] key = new bool[10];
-
-    public void DestroyKey(Key k)
-    {
-        key[(int)k] = false;
-    }
-    public void AddKey(Key k)
-    {
-        key[(int)k] = true;
-    }
 
 
     void Update()
@@ -518,15 +516,15 @@ public class PlayerController : MonoBehaviour
             return;
         if (cannotmove == true)
             return;
-        move =  Mathf.Clamp(Input.GetAxisRaw("Horizontal"), (key[(int)Key.Left]) ? -Mathf.Infinity : 0,(key[(int)Key.Right]) ?  Mathf.Infinity : 0);
+        move =  Mathf.Clamp(Input.GetAxisRaw("Horizontal"), (guiButtons.GetButtonStatus(Key.Left)) ? -Mathf.Infinity : 0,(guiButtons.GetButtonStatus(Key.Right)) ?  Mathf.Infinity : 0);
         movey = Input.GetAxisRaw("Vertical");
        bool iscrouching = false;
        // move = (istapping) ? move / 2 : move;
 
 
-        if (key[(int)Key.Jump] && (Input.GetKey(KeyCode.Space)) && movey < -0.6f)
+        if (guiButtons.GetButtonStatus(Key.Jump) && (Input.GetKey(KeyCode.Space)) && movey < -0.6f)
             tryGoUnder();
-        else if (key[(int)Key.Jump] && Input.GetKey(KeyCode.Space))
+        else if (guiButtons.GetButtonStatus(Key.Jump) && Input.GetKey(KeyCode.Space))
             tryjump();
         else if(movey < -0.6f && grounded)
         {
@@ -534,11 +532,12 @@ public class PlayerController : MonoBehaviour
             iscrouching = true;
         }
         anim.SetBool("iscrouching", iscrouching);
-
-        if (key[(int)Key.Attack] && Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))
+        if (Input.GetMouseButton(0) && nbDestroyLeft > 0)
+            DestroyThing();
+        else if (guiButtons.GetButtonStatus(Key.Attack) && Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl) || Input.GetMouseButton(0))
             StartCoroutine(Tapping());
 
-		if (key[(int)Key.Dash] && Input.GetKey(KeyCode.X) || Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.LeftCommand) || Input.GetKey(KeyCode.RightShift))
+		if (guiButtons.GetButtonStatus(Key.Dash) && Input.GetKey(KeyCode.X) || Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.LeftCommand) || Input.GetKey(KeyCode.RightShift))
             StartCoroutine(dash());
     }
 
@@ -572,11 +571,26 @@ public class PlayerController : MonoBehaviour
         Move(move, movey);
     }
 
+
+
     /*****************************************************************************************************************
                                                         COLLISION
     *****************************************************************************************************************/
     protected bool IsOnLadder = false;
 
+    public void addDestroy()
+    {
+        nbDestroyLeft++;
+    }
+
+    void DestroyThing()
+    {
+       Collider2D[] col = Physics2D.OverlapPointAll(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+       foreach (var c in col)
+       {
+           c.enabled = false;
+       }
+    }
     void OnCollisionEnter2D(Collision2D other)
     {
         if (other.collider.tag == "Slime")

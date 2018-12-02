@@ -13,7 +13,7 @@ public class GuiButtons : MonoBehaviour
             public GameObject guiLayer;
             public bool actif;
     }
-    public List<ButtonList> buttonList;
+    public List<ButtonList> buttonList = new List<ButtonList>();
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +33,15 @@ public class GuiButtons : MonoBehaviour
     }
 
     public bool GetButtonStatus(PlayerController.Key p_button) {
-        return buttonList.Where(c => c.index == p_button).FirstOrDefault().actif;
+        ButtonList truc;
+        return ((truc = buttonList.Where(c => c.index == p_button).FirstOrDefault()) != null ? truc.actif : false);
+    }
+
+    public void DestroyButton(string p_key) {
+        ButtonList truc;
+        Debug.Log("trugh5bnj");
+        truc = buttonList.Where(c => c.index.ToString() == p_key).FirstOrDefault();
+        truc.actif = false;
+        truc.guiLayer.SetActive(true);
     }
 }
