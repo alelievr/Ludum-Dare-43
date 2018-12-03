@@ -361,7 +361,8 @@ MonoBehaviour:
   mouseDestroy: {fileID: 2800000, guid: 8e488ad39dab0445e9f9c24b9f0be75b, type: 3}
   mouseCreate: {fileID: 2800000, guid: 43b12a9fd2753417d810ea2952bb5c70, type: 3}
   DestroyRange: 1
-  platTile: {fileID: 11400000, guid: 3011e906cf255440daf0669750519361, type: 2}
+  platTile: {fileID: 11400000, guid: a60b604a610b34bd19f0ffd571c59b6e, type: 2}
+  tilemap: {fileID: 0}
 --- !u!82 &6449904071361694987
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1362,11 +1363,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1787254678}
     m_Modifications:
-    - target: {fileID: 2472995820644009887, guid: 7dd03d08d3e5e4c7b8cdcd9aa1cb81f0,
-        type: 3}
-      propertyPath: m_Name
-      value: Boost
-      objectReference: {fileID: 0}
     - target: {fileID: 2472995820644009884, guid: 7dd03d08d3e5e4c7b8cdcd9aa1cb81f0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1486,6 +1482,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1.0000399
+      objectReference: {fileID: 0}
+    - target: {fileID: 2472995820644009887, guid: 7dd03d08d3e5e4c7b8cdcd9aa1cb81f0,
+        type: 3}
+      propertyPath: m_Name
+      value: Boost
       objectReference: {fileID: 0}
     - target: {fileID: 2472995820644009885, guid: 7dd03d08d3e5e4c7b8cdcd9aa1cb81f0,
         type: 3}
@@ -1699,11 +1700,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1787254678}
     m_Modifications:
-    - target: {fileID: 2472995820644009887, guid: 7dd03d08d3e5e4c7b8cdcd9aa1cb81f0,
-        type: 3}
-      propertyPath: m_Name
-      value: AddBlock
-      objectReference: {fileID: 0}
     - target: {fileID: 2472995820644009884, guid: 7dd03d08d3e5e4c7b8cdcd9aa1cb81f0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1824,6 +1820,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1.0000399
       objectReference: {fileID: 0}
+    - target: {fileID: 2472995820644009887, guid: 7dd03d08d3e5e4c7b8cdcd9aa1cb81f0,
+        type: 3}
+      propertyPath: m_Name
+      value: AddBlock
+      objectReference: {fileID: 0}
     - target: {fileID: 2472995820644009885, guid: 7dd03d08d3e5e4c7b8cdcd9aa1cb81f0,
         type: 3}
       propertyPath: m_Colors.m_DisabledColor.a
@@ -1894,11 +1895,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1787254678}
     m_Modifications:
-    - target: {fileID: 2472995820644009887, guid: 7dd03d08d3e5e4c7b8cdcd9aa1cb81f0,
-        type: 3}
-      propertyPath: m_Name
-      value: DestroyBlock
-      objectReference: {fileID: 0}
     - target: {fileID: 2472995820644009884, guid: 7dd03d08d3e5e4c7b8cdcd9aa1cb81f0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2003,6 +1999,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2472995820644009887, guid: 7dd03d08d3e5e4c7b8cdcd9aa1cb81f0,
+        type: 3}
+      propertyPath: m_Name
+      value: DestroyBlock
       objectReference: {fileID: 0}
     - target: {fileID: 2472995820644009885, guid: 7dd03d08d3e5e4c7b8cdcd9aa1cb81f0,
         type: 3}

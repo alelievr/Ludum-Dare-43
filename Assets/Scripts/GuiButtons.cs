@@ -45,7 +45,7 @@ public class GuiButtons : MonoBehaviour
     public TileBase     platTile;
     bool                timeFreeze = false;
     bool                dealing = false;
-    Tilemap             tilemap;
+    public Tilemap             tilemap;
     PlayerController    player;
 
     float defaultBackgroundMusicVolume;
@@ -54,7 +54,7 @@ public class GuiButtons : MonoBehaviour
     void Start()
     {
         backgroundMusicMixer.GetFloat("BackgroundMusicVolume", out defaultBackgroundMusicVolume);
-        tilemap = GameObject.FindObjectOfType< Tilemap >();
+        // tilemap = GameObject.FindObjectOfType< Tilemap >();
         player = GameObject.FindObjectOfType< PlayerController >();
     }
 
@@ -197,17 +197,34 @@ public class GuiButtons : MonoBehaviour
         player.Boost();
     }
 
+    List<ButtonList> lastButton = new List<ButtonList>();
+
     public void DestroyButton(string p_key)
     {
         dealing = true;
         ButtonList button;
         button = buttonList.Where(c => c.index.ToString() == p_key).FirstOrDefault();
+        lastButton.Add(button);
         if (button.actif)
         {
             button.actif = false;
             button.guiButton.GetComponent< Button >().interactable = false;
             button.guiLayer.SetActive(true);
             guiButtonsAnimator.SetBool("SwitchEnable", true);
+        }
+    }
+
+    public void ReAddButton()
+    {
+        ButtonList button;
+        button = lastButton.LastOrDefault();
+        if (button != null)
+        {
+            button.actif = true;
+            button.guiButton.GetComponent< Button >().interactable = true;
+            button.guiLayer.SetActive(false);
+            guiButtonsAnimator.SetBool("SwitchEnable", false);
+            lastButton.RemoveAt(lastButton.Count - 1);
         }
     }
 
