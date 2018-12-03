@@ -944,6 +944,16 @@ PrefabInstance:
       propertyPath: minYVelocity
       value: -12
       objectReference: {fileID: 0}
+    - target: {fileID: 32242100586374597, guid: a7f84f7f1c0bf421a971f51edc9906fc,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: c103fd41c71a041bdbe65048c7544486, type: 3}
+    - target: {fileID: 4884848622438560727, guid: a7f84f7f1c0bf421a971f51edc9906fc,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: e1afe4298ac0f408bb4c458c97e35d7b, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7f84f7f1c0bf421a971f51edc9906fc, type: 3}
 --- !u!213 &1187853454
@@ -1345,8 +1355,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e66e454b2e8684080a46d84b541e1fa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeSound: 0
+  fadeTime: 0.5
+  interuptLoading: 0
+  objectsToFadeTag: FadeTranstion
+  destroyOnNextLoad: 0
   nexTSceneName: level4
-  WaitInSeconds: 0.1
   tagAccepted: Player
 --- !u!1001 &1705282408
 PrefabInstance:
@@ -21618,7 +21632,7 @@ TilemapRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -16
   m_ChunkSize: {x: 32, y: 32, z: 32}
-  m_ChunkCullingBounds: {x: 0.13999999, y: 0.13999999, z: 0}
+  m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 0
