@@ -340,7 +340,7 @@ MonoBehaviour:
     guiButton: {fileID: 7137317763951633462}
     guiLayer: {fileID: 7137317762945352738}
     actif: 1
-  - index: 3
+  - index: 6
     guiButton: {fileID: 2170783228361737489}
     guiLayer: {fileID: 2170783227356980485}
     actif: 1
@@ -2183,7 +2183,7 @@ PrefabInstance:
     - target: {fileID: 5951651876210862807, guid: be6a2ea9eecf64f049fc95d6e519dc78,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: Down
+      value: Attack
       objectReference: {fileID: 0}
     - target: {fileID: 4727117895974618798, guid: be6a2ea9eecf64f049fc95d6e519dc78,
         type: 3}
@@ -2309,7 +2309,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 67b0d73ad14f5412faefbf6d955b3db9,
+      objectReference: {fileID: 21300000, guid: f7552c9048b1d48fdb592557201276d1,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be6a2ea9eecf64f049fc95d6e519dc78, type: 3}
