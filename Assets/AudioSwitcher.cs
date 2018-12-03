@@ -7,19 +7,12 @@ public class AudioSwitcher : MonoBehaviour
     public AudioSource  intro;
     public AudioSource  loop;
     
-    bool                isLooping = false;
-    
     void Start()
     {
-        
+        loop.PlayScheduled(intro.time);
     }
 
     void Update()
     {
-        if (!intro.isPlaying && !isLooping)
-        {
-            loop.Play();
-            isLooping = true;
-        }
     }
 }

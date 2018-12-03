@@ -5,6 +5,8 @@ using UnityEngine.UI;
 using System.Linq;
 using UnityEngine.Tilemaps;
 using System.Linq;
+using UnityEngine.Audio;
+using DG.Tweening;
 
 public class GuiButtons : MonoBehaviour
 {
@@ -26,6 +28,7 @@ public class GuiButtons : MonoBehaviour
     public List<ButtonList> buttonList = new List<ButtonList>();
     public AudioSource  guiEnterSound;
     public AudioSource  guiExitSound;
+    public AudioMixer   backgroundMusicMixer;
     public GameObject   dealPanel;
     public Animator     guiButtonsAnimator;
     Mode               mode;
@@ -45,10 +48,12 @@ public class GuiButtons : MonoBehaviour
     Tilemap             tilemap;
     PlayerController    player;
 
+    float defaultBackgroundMusicVolume;
     Dictionary< Vector3Int, TileBase > previewTiles = new Dictionary<Vector3Int, TileBase>();
 
     void Start()
     {
+        backgroundMusicMixer.GetFloat("BackgroundMusicVolume", out defaultBackgroundMusicVolume);
         tilemap = GameObject.FindObjectOfType< Tilemap >();
         player = GameObject.FindObjectOfType< PlayerController >();
     }
@@ -102,6 +107,7 @@ public class GuiButtons : MonoBehaviour
 
     void OpenDealMenu()
     {
+        backgroundMusicMixer.DOSetFloat("BackgroundMusicVolume", -25, .5f).SetUpdate(true);
         guiEnterSound.Play();
         timeFreeze = true;
         guiButtonsAnimator.SetBool("ShowGUI", true);
@@ -117,6 +123,8 @@ public class GuiButtons : MonoBehaviour
 
     void CloseDealMenu()
     {
+        Debug.Log("defaultBackgroundMusicVolume: " + defaultBackgroundMusicVolume);
+        backgroundMusicMixer.DOSetFloat("BackgroundMusicVolume", defaultBackgroundMusicVolume, .5f);
         guiExitSound.Play();
         timeFreeze = false;
         dealing = false;
