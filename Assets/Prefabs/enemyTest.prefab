@@ -71,7 +71,7 @@ GameObject:
   - component: {fileID: 343466043}
   - component: {fileID: 343466044}
   m_Layer: 0
-  m_Name: mechant_2
+  m_Name: arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -84,11 +84,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 343466042}
-  m_LocalRotation: {x: -0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.647, y: 0.502, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: 0.56412506, w: 0.8256893}
+  m_LocalPosition: {x: 0.31522667, y: 0.8349996, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 3248365899666555807}
+  m_Father: {fileID: 2052651506}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &343466044
@@ -149,7 +149,7 @@ GameObject:
   m_Component:
   - component: {fileID: 488140332}
   m_Layer: 0
-  m_Name: root
+  m_Name: Mechant
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -579,7 +579,7 @@ Transform:
   m_LocalScale: {x: -3.479713, y: 3.479713, z: 3.479713}
   m_Children: []
   m_Father: {fileID: 3248365899666555807}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1929300509
 MonoBehaviour:
@@ -673,7 +673,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2052651506}
   m_Layer: 0
-  m_Name: root
+  m_Name: Bow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -692,6 +692,7 @@ Transform:
   m_Children:
   - {fileID: 2067269478}
   - {fileID: 1353500882}
+  - {fileID: 343466043}
   m_Father: {fileID: 1530188198}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -787,12 +788,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3248365899666555792}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15.58, y: 1.94, z: 0}
+  m_LocalPosition: {x: -16.009, y: 1.33, z: 0}
   m_LocalScale: {x: -0.28738, y: 0.28738, z: 0.28738}
   m_Children:
   - {fileID: 1530188198}
   - {fileID: 488140332}
-  - {fileID: 343466043}
   - {fileID: 1929300507}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -949,7 +949,7 @@ MonoBehaviour:
   distanceofdash: 10
   isinvuindash: 1
   dashcd: 0.5
-  ouchClip: {fileID: 0}
+  ouchClip: {fileID: 8300000, guid: c3c95ac93a858ea478fa667958f84f8c, type: 3}
   ouchVolume: 0.8
   jumpClip: {fileID: 0}
   jumpingVolume: 0.5
