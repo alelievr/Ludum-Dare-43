@@ -564,7 +564,7 @@ Transform:
   m_GameObject: {fileID: 8085375875346480966}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6.015003, y: 0.1318784, z: 0}
-  m_LocalScale: {x: 0.28738, y: 0.28738, z: 0.28738}
+  m_LocalScale: {x: 0.1432072, y: 0.1432072, z: 0.1432072}
   m_Children:
   - {fileID: 5227963542263949678}
   - {fileID: 8085375875754134946}
@@ -702,7 +702,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &470677035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -716,6 +716,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   guiButtons: {fileID: 0}
+  vcam: {fileID: 0}
+  oldvcam: {fileID: 0}
   lifeText: {fileID: 0}
   facingLeft: 0
   life: 5
@@ -726,7 +728,7 @@ MonoBehaviour:
   maxSpeed: 10
   jumpPower: 1000000
   jumpIdle: 0.3
-  groundPosition: {x: 0, y: -1.15, z: 0}
+  groundPosition: {x: 0, y: -0.5, z: 0}
   groundSize: {x: 0.07, y: 0.21}
   maxYVelocity: 15
   minYVelocity: -10

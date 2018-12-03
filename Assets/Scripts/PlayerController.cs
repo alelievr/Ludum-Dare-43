@@ -10,7 +10,10 @@ using UnityEngine.Events;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
+    [Header("Only Player setting")]
     public GuiButtons guiButtons;
+    public CinemachineVirtualCamera vcam = null;
+    public CinemachineVirtualCamera oldvcam = null;
 
     [Header("Basic setting")]
     public Text lifeText = null; 
@@ -68,7 +71,7 @@ public class PlayerController : MonoBehaviour
     public UnityEvent   onTakeDamage;
 
     Vector2 impacto = Vector2.zero;
-    CinemachineVirtualCamera vcam;
+
     CinemachineBasicMultiChannelPerlin vcamperlin;
     Material spriteMaterial;
     bool isPlayer = false;
@@ -100,16 +103,12 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator WaitForCam()
     {
-        while (!vcam)
-        {
-            vcam = Camera.main.GetComponent<CinemachineBrain>().ActiveVirtualCamera as CinemachineVirtualCamera;
+        while (move == 0)
             yield return new WaitForEndOfFrame();
-        }
-        if (isPlayer)
-        {
-            vcam.Follow = (transform.parent) ?? transform;
-            vcam.LookAt = (transform.parent) ?? transform;
-        }
+
+        vcam.gameObject.SetActive(true);
+        yield return new WaitForEndOfFrame();
+        oldvcam.gameObject.SetActive(false);
     }
 
     protected void reinit()
@@ -123,8 +122,8 @@ public class PlayerController : MonoBehaviour
             lifeText.text = life.ToString();
         IsOuchstun = false;
         isDead = false;
-
-        StartCoroutine(WaitForCam());
+        if (isPlayer)
+            StartCoroutine(WaitForCam());
         // CaBouge cbtmp = GetComponentInParent<CaBouge>();
         // if (cbtmp)
         //     rbparent = cbtmp.GetComponent<Rigidbody2D>();
@@ -375,6 +374,8 @@ public class PlayerController : MonoBehaviour
     {
 		coroutineisplayingcount++;
         TakingDamage = true;
+        if (!vcam)
+            vcam = Camera.main.GetComponent<CinemachineBrain>().ActiveVirtualCamera as CinemachineVirtualCamera;
         vcamperlin = vcam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         vcamperlin.m_AmplitudeGain = 0.25f;
         vcamperlin.m_FrequencyGain = 30;
@@ -531,6 +532,8 @@ public class PlayerController : MonoBehaviour
 
 		if (guiButtons.GetButtonStatus(Key.Dash) && Input.GetKey(KeyCode.X) || Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.LeftCommand) || Input.GetKey(KeyCode.RightShift))
             StartCoroutine(dash());
+        if (Input.GetKey(KeyCode.R))
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     protected virtual void FixedUpdate()
@@ -588,6 +591,11 @@ public class PlayerController : MonoBehaviour
             if (oponnent)
                 oponnent.DoingDamage(transform.position);
             ouch(new Vector2(Mathf.Sign(transform.position.x - other.transform.position.x) * ouchJumpMultPushX, ouchJumpMultPushY));
+        }
+        if (isPlayer && other.tag == "reboot")
+        {
+            other.enabled = false;
+            guiButtons.ReAddButton();
         }
     }
 
