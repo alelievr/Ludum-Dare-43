@@ -743,7 +743,7 @@ MonoBehaviour:
   tappingVolume: 0.5
   run: {fileID: 0}
   runVolume: 0.5
-  DieClip: {fileID: 0}
+  DieClip: {fileID: 8300000, guid: 64c0d201ad11e3d40af3c574f46cc6c3, type: 3}
   DieVolume: 0.5
   DestroyClip: {fileID: 0}
   DestroyVolume: 0.5
