@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class NextLevel : SceneTransition {
+public class NextLevel : MonoBehaviour {
 
 	public string nexTSceneName;
 	public string tagAccepted = "Player";
@@ -14,7 +14,7 @@ public class NextLevel : SceneTransition {
 	{
 		if (other.tag == tagAccepted)
 		{
-			base.LoadScene(nexTSceneName);
+			SceneTransition.instance.LoadScene(nexTSceneName);
 		}
 
 	}
