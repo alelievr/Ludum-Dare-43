@@ -734,7 +734,7 @@ MonoBehaviour:
   minYVelocity: -10
   flying: 0
   timedashinsc: 0.2
-  distanceofdash: 500
+  distanceofdash: 300
   isinvuindash: 1
   dashcd: 0.5
   ouchClip: {fileID: 8300000, guid: 365a9af404d6b914294286970243326f, type: 3}
