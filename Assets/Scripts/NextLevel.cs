@@ -16,6 +16,5 @@ public class NextLevel : MonoBehaviour {
 		{
 			SceneTransition.instance.LoadScene(nexTSceneName);
 		}
-
 	}
 }

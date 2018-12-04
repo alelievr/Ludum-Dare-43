@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-public class IntroEnder : SceneTransition
+
+public class IntroEnder : MonoBehaviour
 {
     private void OnEnable()
     {
-        base.LoadScene("level2");
+        SceneTransition.instance.LoadScene("level2");
     }
 }

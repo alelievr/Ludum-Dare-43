@@ -14,6 +14,7 @@ public class DontDestroyOnLoadUnique : MonoBehaviour
 	{
 		if (firstInstance != null)
 		{
+			Debug.Log("Collision  !");
 			Destroy(gameObject);
 			return ;
 		}
