@@ -55,7 +55,7 @@ public class GuiButtons : MonoBehaviour
     {
         backgroundMusicMixer.GetFloat("BackgroundMusicVolume", out defaultBackgroundMusicVolume);
         // tilemap = GameObject.FindObjectOfType< Tilemap >();
-        player = GameObject.FindObjectOfType< PlayerController >();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
     }
 
     void Update()
