@@ -44,7 +44,7 @@ public class GuiButtons : MonoBehaviour
     // TileMap:
     public TileBase     platTile;
     bool                timeFreeze = false;
-    bool                dealing = false;
+    public bool                dealing = false;
     public Tilemap             tilemap;
     PlayerController    player;
 
@@ -200,6 +200,7 @@ public class GuiButtons : MonoBehaviour
 
     public void DestroyButton(string p_key)
     {
+        Debug.Log("DestroyButton");
         dealing = true;
         ButtonList button;
         button = buttonList.Where(c => c.index.ToString() == p_key).FirstOrDefault();
@@ -207,7 +208,7 @@ public class GuiButtons : MonoBehaviour
         if (button.actif)
         {
             button.actif = false;
-            button.guiButton.GetComponent< Button >().interactable = false;
+            button.guiButton.GetComponent< Button >().enabled = false;
             button.guiLayer.SetActive(true);
             guiButtonsAnimator.SetBool("SwitchEnable", true);
         }
@@ -217,10 +218,12 @@ public class GuiButtons : MonoBehaviour
     {
         ButtonList button;
         button = lastButton.LastOrDefault();
+        // Debug.Log()
         if (button != null)
         {
+            Debug.Log("OH NOOO");
             button.actif = true;
-            button.guiButton.GetComponent< Button >().interactable = true;
+            button.guiButton.GetComponent< Button >().enabled = true;
             button.guiLayer.SetActive(false);
             guiButtonsAnimator.SetBool("SwitchEnable", false);
             lastButton.RemoveAt(lastButton.Count - 1);

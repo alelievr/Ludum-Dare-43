@@ -592,6 +592,16 @@ public class PlayerController : MonoBehaviour
                 oponnent.DoingDamage(transform.position);
             ouch(new Vector2(Mathf.Sign(transform.position.x - other.transform.position.x) * ouchJumpMultPushX, ouchJumpMultPushY));
         }
+ 
+    }
+
+    /// <summary>
+    /// Sent when another object enters a trigger collider attached to this
+    /// object (2D physics only).
+    /// </summary>
+    /// <param name="other">The other Collider2D involved in this collision.</param>
+    void OnTriggerEnter2D(Collider2D other)
+    {
         if (isPlayer && other.tag == "reboot")
         {
             other.enabled = false;
