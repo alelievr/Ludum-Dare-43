@@ -1310,14 +1310,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 735840386}
     - target: {fileID: 470677035, guid: a7f84f7f1c0bf421a971f51edc9906fc, type: 3}
-      propertyPath: maxYVelocity
-      value: 22
-      objectReference: {fileID: 0}
-    - target: {fileID: 470677035, guid: a7f84f7f1c0bf421a971f51edc9906fc, type: 3}
-      propertyPath: minYVelocity
-      value: -15
-      objectReference: {fileID: 0}
-    - target: {fileID: 470677035, guid: a7f84f7f1c0bf421a971f51edc9906fc, type: 3}
       propertyPath: vcam
       value: 
       objectReference: {fileID: 1901765807}

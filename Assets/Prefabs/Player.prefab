@@ -720,7 +720,7 @@ MonoBehaviour:
   oldvcam: {fileID: 0}
   lifeText: {fileID: 0}
   facingLeft: 0
-  life: 5
+  life: 3
   invulnTime: 1
   ouchtag: ouch
   timestunouch: 0.2
@@ -730,11 +730,11 @@ MonoBehaviour:
   jumpIdle: 0.3
   groundPosition: {x: 0, y: -0.5, z: 0}
   groundSize: {x: 0.07, y: 0.21}
-  maxYVelocity: 15
-  minYVelocity: -10
+  maxYVelocity: 18
+  minYVelocity: -12
   flying: 0
   timedashinsc: 0.2
-  distanceofdash: 300
+  distanceofdash: 200
   isinvuindash: 1
   dashcd: 0.5
   ouchClip: {fileID: 8300000, guid: 365a9af404d6b914294286970243326f, type: 3}
