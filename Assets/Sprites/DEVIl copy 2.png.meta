@@ -1,14 +1,9 @@
 fileFormatVersion: 2
-guid: bfebbf480497c4770b46b770b3bac01b
+guid: 1b2cbec7bb2b7448997f29ee55a0d63d
 TextureImporter:
   fileIDToRecycleName:
-    21300000: portal_0
-    21300002: portal_1
-    21300004: portal_2
-    21300006: portal_3
-    21300008: portal_4
-    21300010: portal_5
-    21300012: portal_6
+    21300000: DEVIl copy 2_0
+    21300002: DEVIl copy 2_1
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -70,7 +65,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -81,7 +76,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -92,7 +87,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -103,7 +98,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -113,141 +108,41 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: portal_0
+      name: DEVIl copy 2_0
       rect:
         serializedVersion: 2
-        x: 9
-        y: 195
-        width: 16
-        height: 25
+        x: 19
+        y: 171
+        width: 87
+        height: 82
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 02acf87f837aa4b8eb708755ac71e843
+      spriteID: 9e87eb242ce9e4da0aa1eccff196e7f6
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: portal_1
+      name: DEVIl copy 2_1
       rect:
         serializedVersion: 2
-        x: 9
-        y: 163
-        width: 16
-        height: 25
+        x: 19
+        y: 42
+        width: 87
+        height: 82
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1e1f1eb45a9df469bbbea5527beba49a
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: portal_2
-      rect:
-        serializedVersion: 2
-        x: 9
-        y: 131
-        width: 16
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c365ec423d5f448598162a81b0c9e3e3
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: portal_3
-      rect:
-        serializedVersion: 2
-        x: 9
-        y: 99
-        width: 16
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b8673a0bbae4e4d039f8428aff10b6e1
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: portal_4
-      rect:
-        serializedVersion: 2
-        x: 9
-        y: 67
-        width: 16
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f68da1321d7c6484e85e2352f5660c8c
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: portal_5
-      rect:
-        serializedVersion: 2
-        x: 9
-        y: 35
-        width: 16
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f494bb8265db347dd9a6e511844f90f0
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: portal_6
-      rect:
-        serializedVersion: 2
-        x: 9
-        y: 3
-        width: 16
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3aa96d069820841e2aa4949c14120d26
+      spriteID: f40a6f8b09bea46d4bbfa1437ce3c4c4
       vertices: []
       indices: 
       edges: []
@@ -255,7 +150,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 61b049ca67eb247b59aa1c9cfa72e304
+    spriteID: 10dd8a08a3a83444188a434158219bc3
     vertices: []
     indices: 
     edges: []
