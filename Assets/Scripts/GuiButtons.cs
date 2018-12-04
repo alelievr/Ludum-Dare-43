@@ -123,7 +123,6 @@ public class GuiButtons : MonoBehaviour
 
     void CloseDealMenu()
     {
-        Debug.Log("defaultBackgroundMusicVolume: " + defaultBackgroundMusicVolume);
         backgroundMusicMixer.DOSetFloat("BackgroundMusicVolume", defaultBackgroundMusicVolume, .5f);
         guiExitSound.Play();
         timeFreeze = false;

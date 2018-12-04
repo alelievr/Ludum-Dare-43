@@ -156,10 +156,10 @@ public class Agro : PlayerController {
 		if (other.tag == "Player")
 		{
 			changesprite = true;
-			if (anim)
-				anim.SetTrigger("Alert!");
-			else
-				Debug.Log(name + " pas D'anim");
+			// if (anim)
+				// anim.SetTrigger("Alert!");
+			// else
+				// Debug.Log(name + " pas D'anim");
 			Cible = other.transform;
 			// t.radius = 2;
 			// t.weight = 1;
