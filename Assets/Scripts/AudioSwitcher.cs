@@ -9,7 +9,9 @@ public class AudioSwitcher : MonoBehaviour
     
     void Start()
     {
-        loop.PlayScheduled(intro.time);
+        Debug.Log("intro.time: " + intro.clip.length);
+        Debug.Log("dspTime; " + AudioSettings.dspTime);
+        loop.PlayScheduled(AudioSettings.dspTime + intro.clip.length);
     }
 
     void Update()
