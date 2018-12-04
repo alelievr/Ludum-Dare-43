@@ -79,9 +79,10 @@ public class SceneTransition : MonoBehaviour
 			}
 			if (fadeSound)
 			{
-				AudioSource audio = obj.GetComponent< AudioSource >();
-				if (audio != null)
-					audio.DOFade(0, fadeTime).SetUpdate(true);
+				AudioSource[] audios = obj.GetComponents< AudioSource >();
+				foreach (var audio in audios)
+					if (audio != null)
+						audio.DOFade(0, fadeTime).SetUpdate(true);
 			}
 		}
 	}
