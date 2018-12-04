@@ -17,6 +17,7 @@ public class TriggerTimeline : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        director.Play();
+        if (other.tag == "Player")
+            director.Play();
     }
 }
