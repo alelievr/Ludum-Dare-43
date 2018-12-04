@@ -527,7 +527,7 @@ public class PlayerController : MonoBehaviour
             // iscrouching = true;
         }
         // anim.SetBool("iscrouching", iscrouching);
-        else if (guiButtons.GetButtonStatus(Key.Attack) && Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl) || Input.GetMouseButton(0))
+        else if (guiButtons.GetButtonStatus(Key.Attack) && (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl) || Input.GetMouseButton(0)))
             StartCoroutine(Tapping());
 
 		if (guiButtons.GetButtonStatus(Key.Dash) && Input.GetKey(KeyCode.X) || Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.LeftCommand) || Input.GetKey(KeyCode.RightShift))
