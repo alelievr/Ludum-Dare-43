@@ -62,6 +62,7 @@ public class SceneTransition : MonoBehaviour
 
 	void StartFadeIn()
 	{
+		Debug.Log("Start fade in !");
 		GameObject[] toFadeIn = GameObject.FindGameObjectsWithTag(objectsToFadeTag);
 
 		foreach (var obj in toFadeIn)
@@ -74,19 +75,22 @@ public class SceneTransition : MonoBehaviour
 				Color start = img.color;
 				start.a = 0;
 				img.color = start;
-				img.DOColor(end, fadeTime);
+				img.DOColor(end, fadeTime).SetUpdate(true);
 			}
 			if (fadeSound)
 			{
-				AudioSource audio = obj.GetComponent< AudioSource >();
-				if (audio != null)
-					audio.DOFade(0, fadeTime);
+				AudioSource[] audios = obj.GetComponents< AudioSource >();
+				foreach (var audio in audios)
+					if (audio != null)
+						audio.DOFade(0, fadeTime).SetUpdate(true);
 			}
 		}
 	}
 
 	void StartFadeOut()
 	{
+		Debug.Log("Start fade out !");
+
 		GameObject[] toFadeIn = GameObject.FindGameObjectsWithTag(objectsToFadeTag);
 
 		foreach (var obj in toFadeIn)
@@ -99,13 +103,13 @@ public class SceneTransition : MonoBehaviour
 				Color start = img.color;
 				start.a = 1;
 				img.color = start;
-				img.DOColor(end, fadeTime);
+				img.DOColor(end, fadeTime).SetUpdate(true);
 			}
 			if (fadeSound)
 			{
 				AudioSource audio = obj.GetComponent< AudioSource >();
 				if (audio != null)
-					audio.DOFade(1, fadeTime);
+					audio.DOFade(1, fadeTime).SetUpdate(true);
 			}
 		}
 	}
@@ -115,6 +119,7 @@ public class SceneTransition : MonoBehaviour
 		if (loading == true)
 			yield break;
 		
+		Debug.Log("Load scene !");
 		loading = true;
 
 		StartFadeIn();
@@ -126,6 +131,7 @@ public class SceneTransition : MonoBehaviour
 		//wait for the scene to load
 		yield return new WaitForSeconds(0.0f);
 
+		Debug.Log("Load scene2 !");
 		StartFadeOut();
 
 		yield return new WaitForSeconds(fadeTime);
