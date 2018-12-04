@@ -116,10 +116,17 @@ TextureImporter:
       name: portal_0
       rect:
         serializedVersion: 2
+<<<<<<< HEAD
+        x: 9
+        y: 195
+        width: 16
+        height: 25
+=======
         x: 0
         y: 192
         width: 32
         height: 32
+>>>>>>> cd25ae8ff2c7c075811cdc2313793ffc603f1882
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -127,7 +134,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
+<<<<<<< HEAD
+      spriteID: 02acf87f837aa4b8eb708755ac71e843
+=======
       spriteID: 654bc44dbd8fa4fcd9f512ac08e160ef
+>>>>>>> cd25ae8ff2c7c075811cdc2313793ffc603f1882
       vertices: []
       indices: 
       edges: []
@@ -136,10 +147,17 @@ TextureImporter:
       name: portal_1
       rect:
         serializedVersion: 2
+<<<<<<< HEAD
+        x: 9
+        y: 163
+        width: 16
+        height: 25
+=======
         x: 0
         y: 160
         width: 32
         height: 32
+>>>>>>> cd25ae8ff2c7c075811cdc2313793ffc603f1882
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -147,7 +165,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
+<<<<<<< HEAD
+      spriteID: 1e1f1eb45a9df469bbbea5527beba49a
+=======
       spriteID: 3da3b08709080453f90e9f8172a0edcf
+>>>>>>> cd25ae8ff2c7c075811cdc2313793ffc603f1882
       vertices: []
       indices: 
       edges: []
@@ -156,10 +178,17 @@ TextureImporter:
       name: portal_2
       rect:
         serializedVersion: 2
+<<<<<<< HEAD
+        x: 9
+        y: 131
+        width: 16
+        height: 25
+=======
         x: 0
         y: 128
         width: 32
         height: 32
+>>>>>>> cd25ae8ff2c7c075811cdc2313793ffc603f1882
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -167,7 +196,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
+<<<<<<< HEAD
+      spriteID: c365ec423d5f448598162a81b0c9e3e3
+=======
       spriteID: 5f9fd4165b86a4c67bd704b2961327dd
+>>>>>>> cd25ae8ff2c7c075811cdc2313793ffc603f1882
       vertices: []
       indices: 
       edges: []
@@ -176,10 +209,17 @@ TextureImporter:
       name: portal_3
       rect:
         serializedVersion: 2
+<<<<<<< HEAD
+        x: 9
+        y: 99
+        width: 16
+        height: 25
+=======
         x: 0
         y: 96
         width: 32
         height: 32
+>>>>>>> cd25ae8ff2c7c075811cdc2313793ffc603f1882
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -187,7 +227,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
+<<<<<<< HEAD
+      spriteID: b8673a0bbae4e4d039f8428aff10b6e1
+=======
       spriteID: 603e5e4d714254f409f983d2a529bca9
+>>>>>>> cd25ae8ff2c7c075811cdc2313793ffc603f1882
       vertices: []
       indices: 
       edges: []
@@ -196,10 +240,17 @@ TextureImporter:
       name: portal_4
       rect:
         serializedVersion: 2
+<<<<<<< HEAD
+        x: 9
+        y: 67
+        width: 16
+        height: 25
+=======
         x: 0
         y: 64
         width: 32
         height: 32
+>>>>>>> cd25ae8ff2c7c075811cdc2313793ffc603f1882
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -207,7 +258,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
+<<<<<<< HEAD
+      spriteID: f68da1321d7c6484e85e2352f5660c8c
+=======
       spriteID: 0f2b7fa98d327400c95ac3f16aa2a707
+>>>>>>> cd25ae8ff2c7c075811cdc2313793ffc603f1882
       vertices: []
       indices: 
       edges: []
@@ -216,10 +271,17 @@ TextureImporter:
       name: portal_5
       rect:
         serializedVersion: 2
+<<<<<<< HEAD
+        x: 9
+        y: 35
+        width: 16
+        height: 25
+=======
         x: 0
         y: 32
         width: 32
         height: 32
+>>>>>>> cd25ae8ff2c7c075811cdc2313793ffc603f1882
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -227,7 +289,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
+<<<<<<< HEAD
+      spriteID: f494bb8265db347dd9a6e511844f90f0
+=======
       spriteID: 12344f5511c624077ae61b779f747f3e
+>>>>>>> cd25ae8ff2c7c075811cdc2313793ffc603f1882
       vertices: []
       indices: 
       edges: []
@@ -236,10 +302,17 @@ TextureImporter:
       name: portal_6
       rect:
         serializedVersion: 2
+<<<<<<< HEAD
+        x: 9
+        y: 3
+        width: 16
+        height: 25
+=======
         x: 0
         y: 0
         width: 32
         height: 32
+>>>>>>> cd25ae8ff2c7c075811cdc2313793ffc603f1882
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -247,7 +320,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
+<<<<<<< HEAD
+      spriteID: 3aa96d069820841e2aa4949c14120d26
+=======
       spriteID: 1e627ccf2e6a0470189d32c6baf72ff2
+>>>>>>> cd25ae8ff2c7c075811cdc2313793ffc603f1882
       vertices: []
       indices: 
       edges: []
